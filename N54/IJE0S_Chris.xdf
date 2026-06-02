@@ -1,4 +1,4 @@
-<!-- Written 05/14/2025 08:34:43 -->
+<!-- Written 06/01/2026 21:20:53 -->
 <XDFFORMAT version="1.80">
   <XDFHEADER>
     <flags>0x1</flags>
@@ -74,6 +74,8 @@
     <CATEGORY index="0x40" name="Private - Legacy (DO NOT TOUCH)" />
     <CATEGORY index="0x41" name="Expermental" />
     <CATEGORY index="0x42" name="Readiness Monitors" />
+    <CATEGORY index="0x43" name="Checksums" />
+    <CATEGORY index="0x44" name="EWS" />
     <CATEGORY index="0x80" name="MHD+ Suite" />
     <CATEGORY index="0x81" name="Antilag" />
     <CATEGORY index="0x82" name="Antilag breakpoints" />
@@ -1996,6 +1998,82 @@
     </XDFAXIS>
     <XDFAXIS id="z">
       <EMBEDDEDDATA mmedaddress="0x427F4" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>2</decimalpl>
+      <min>0.000000</min>
+      <max>255.000000</max>
+      <outputtype>3</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x2B80" flags="0x0">
+    <title>2F83 ( DME: Engine switch-off time)</title>
+    <description>To disable, set to 00&#010;To enable, set to 11&#010;Check your stock rom for the enable value.</description>
+    <CATEGORYMEM index="0" category="15" />
+    <CATEGORYMEM index="1" category="21" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedaddress="0x44A30" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>2</decimalpl>
+      <min>0.000000</min>
+      <max>255.000000</max>
+      <outputtype>3</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x75EF" flags="0x0">
+    <title>2F81 ( DME: Engine switch-off time)</title>
+    <description>To disable, set to 00 &#010;To enable, set to 56 &#010;Check your stock rom for the enable value.</description>
+    <CATEGORYMEM index="0" category="15" />
+    <CATEGORYMEM index="1" category="21" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedaddress="0x449F8" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <decimalpl>2</decimalpl>
       <min>0.000000</min>
       <max>255.000000</max>
@@ -32034,11 +32112,223 @@
     <mask>0x40</mask>
   </XDFFLAG>
   <XDFPATCH uniqueid="0xE4">
-    <title>Readiness Monitor</title>
-    <description>Force Readiness Monitors</description>
+    <title>OBD2 Readiness Monitor</title>
+    <description>Force Readiness Monitors with OBD2 tester</description>
     <CATEGORYMEM index="0" category="66" />
     <CATEGORYMEM index="1" category="67" />
-    <XDFPATCHENTRY name="STATE_READY_OBD1" address="0x18E6CE" datasize="0x4" patchdata="3B0000F0" basedata="05DF6B65" />
-    <XDFPATCHENTRY name="STATE_READY_OBD2" address="0x18E6DE" datasize="0x2" patchdata="820F" basedata="142F" />
+    <XDFPATCHENTRY name="OBD2_READINESS_MONITOR" address="0x161156" datasize="0x2" patchdata="8200" basedata="26F0" />
   </XDFPATCH>
+  <XDFPATCH uniqueid="0xC8A">
+    <title>MHD - STATE_READY_OBD[1]</title>
+    <description>Forces Readiness monitors to be set when read back with MHD&#013;&#010;!! WORKS USE THIS !!</description>
+    <CATEGORYMEM index="0" category="66" />
+    <CATEGORYMEM index="1" category="67" />
+    <XDFPATCHENTRY name="STATE_READY_OBD2[1]" address="0x18E6CE" datasize="0x4" patchdata="3B0000F0" basedata="05DF6B65" />
+  </XDFPATCH>
+  <XDFPATCH uniqueid="0x62E4">
+    <title>MHD - STATE_READY_OBD[0]</title>
+    <description>Forces  STATE_READY_OBD[0] to 0 for MHD &#013;&#010;readiness read&#013;&#010;!! NOT SURE OF THIS YET DO NOT USE !!</description>
+    <CATEGORYMEM index="0" category="66" />
+    <CATEGORYMEM index="1" category="67" />
+    <XDFPATCHENTRY name="STATE_READY_OBD[0]" address="0x18E6C8" datasize="0x4" patchdata="3B0000F0" basedata="05DF6A65" />
+  </XDFPATCH>
+  <XDFPATCH uniqueid="0x4F1F">
+    <title>Current DTCs</title>
+    <description>Should return 0 stored DTCs in the ECU</description>
+    <CATEGORYMEM index="0" category="66" />
+    <XDFPATCHENTRY name="DTCS_SET" address="0x18E6C8" datasize="0x4" patchdata="3B0000F0" />
+  </XDFPATCH>
+  <XDFPATCH uniqueid="0x6DE9">
+    <title>EWS Bypass</title>
+    <CATEGORYMEM index="0" category="66" />
+    <CATEGORYMEM index="1" category="69" />
+    <XDFPATCHENTRY name="FUN_800CFD88 Patch 5" address="0xCFEFA" datasize="0x2" patchdata="DA00" basedata="DAFF" />
+    <XDFPATCHENTRY name="FUN_800CFD88 Patch 4" address="0xCFF62" datasize="0x2" patchdata="DA00" basedata="DAFF" />
+    <XDFPATCHENTRY name="FUN_800CFD88 Patch 3" address="0xD010A" datasize="0x2" patchdata="DA00" basedata="DAFF" />
+    <XDFPATCHENTRY name="FUN_800CFD88 Patch 2" address="0xD006A" datasize="0x2" patchdata="DA00" basedata="DAFF" />
+    <XDFPATCHENTRY name="FUN_800CFD88 Patch 1" address="0xD00E2" datasize="0x2" patchdata="DA00" basedata="DAFF" />
+    <XDFPATCHENTRY name="FUN_80196810 Patch 2" address="0x19683C" datasize="0x2" patchdata="0000" basedata="3C0A" />
+    <XDFPATCHENTRY name="FUN_80196810 patch 1" address="0x196828" datasize="0x2" patchdata="3C0B" basedata="3E0B" />
+    <XDFPATCHENTRY name="FUN_8010D3C8 Patch 1" address="0x10D934" datasize="0x2" patchdata="DA00" basedata="A2AF" />
+    <XDFPATCHENTRY name="FUN_80196856 Patch 1" address="0x196856" datasize="0xE" patchdata="DA0025DF68B325DF69B33B500540" basedata="DAFF25DF68B3DA0125DF69B38204" />
+    <XDFPATCHENTRY name="FUN_80196CA0 Patch 1" address="0x196CA0" datasize="0x12" patchdata="000000000000000000000000000000000000" basedata="DA555F4F178005DF69B7EE1305DF68B7EE10" />
+    <XDFPATCHENTRY name="FUN_801496F0 Patch 1" address="0x149766" datasize="0x2" patchdata="DA00" basedata="DA01" />
+    <XDFPATCHENTRY name="FUN_8010D3C8 Patch 1" address="0x10D8F2" datasize="0x2" patchdata="DA00" basedata="A60F" />
+    <XDFPATCHENTRY name="FUN_800CFD88 Patch 10" address="0xD0110" datasize="0x2" patchdata="DA00" basedata="DA01" />
+    <XDFPATCHENTRY name="FUN_800CFD88 Patch 9" address="0xD00E8" datasize="0x2" patchdata="DA00" basedata="DA01" />
+    <XDFPATCHENTRY name="FUN_800CFD88 Patch 8" address="0xCFF68" datasize="0x2" patchdata="DA00" basedata="DA01" />
+    <XDFPATCHENTRY name="FUN_800CFD88 Patch 7" address="0xCFF00" datasize="0x2" patchdata="DA00" basedata="DA01" />
+    <XDFPATCHENTRY name="FUN_800CFD88 Patch 6" address="0xD0070" datasize="0x2" patchdata="DA00" basedata="DA01" />
+  </XDFPATCH>
+  <XDFPATCH uniqueid="0x1104">
+    <title>ISN Read Enable</title>
+    <description>Allows reading of ISN over OBD&#013;&#010;Stil needs work, DO NOT USE</description>
+    <CATEGORYMEM index="0" category="66" />
+    <XDFPATCHENTRY name="ISN Read Bypass" address="0x19075A" datasize="0xC" patchdata="000000000000000000000000" basedata="3B00014049C4100A1D002B54" />
+  </XDFPATCH>
+  <XDFPATCH uniqueid="0x6E60">
+    <title>UIF1 Vin Update</title>
+    <description>Should add the M3 Vin MSD81&#013;&#010;WBSBL93414PN55631&#013;&#010;This should only work with Nazars tune&#013;&#010;At least to remove the patch part&#013;&#010;&#013;&#010;N54 Quick Flash does not write to this area</description>
+    <CATEGORYMEM index="0" category="66" />
+    <XDFPATCHENTRY name="AIF1_Entry" address="0x40200" datasize="0x40" patchdata="02504E3535363331201404080000076263940000076263950000000000000002404E465330310030303434434330494A453053574253424C3933343134FFFFFF" basedata="0150303436373639201404080000076263940000076263950000000000000002404E465330310030303434434330494A45305357424157423733353939FFFFFF" />
+  </XDFPATCH>
+  <XDFPATCH uniqueid="0x7ED9">
+    <title>Enable mem read</title>
+    <CATEGORYMEM index="0" category="66" />
+    <XDFPATCHENTRY name="Pass security check" address="0x12476" datasize="0x2" patchdata="DA00" basedata="14FF" />
+    <XDFPATCHENTRY name="skip jump 4" address="0x124C8" datasize="0x2" patchdata="3C05" basedata="F6F5" />
+    <XDFPATCHENTRY name="skip jump 3" address="0x124BA" datasize="0x2" patchdata="3C0C" basedata="F6FC" />
+    <XDFPATCHENTRY name="skip jump 2" address="0x124AC" datasize="0x2" patchdata="3C0F" basedata="F6FF" />
+    <XDFPATCHENTRY name="skip jump 1" address="0x1249E" datasize="0x2" patchdata="3C08" basedata="F6F8" />
+    <XDFPATCHENTRY name="Skip security check 2" address="0x10098" datasize="0x2" patchdata="DA00" basedata="DA33" />
+    <XDFPATCHENTRY name="Skip security check" address="0x100DE" datasize="0x2" patchdata="DA00" basedata="DA33" />
+  </XDFPATCH>
+  <XDFTABLE uniqueid="0xFCE" flags="0x0">
+    <title>Checksum 4</title>
+    <CATEGORYMEM index="0" category="66" />
+    <CATEGORYMEM index="1" category="68" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedaddress="0x80304" mmedelementsizebits="32" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>2</decimalpl>
+      <min>0.000000</min>
+      <max>255.000000</max>
+      <outputtype>3</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1103" flags="0x0">
+    <title>Checksum 1</title>
+    <CATEGORYMEM index="0" category="66" />
+    <CATEGORYMEM index="1" category="68" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedaddress="0x40306" mmedelementsizebits="16" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>2</decimalpl>
+      <min>0.000000</min>
+      <max>255.000000</max>
+      <outputtype>3</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x56F9" flags="0x0">
+    <title>Checksum 2</title>
+    <CATEGORYMEM index="0" category="66" />
+    <CATEGORYMEM index="1" category="68" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedaddress="0x48926" mmedelementsizebits="8" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>2</decimalpl>
+      <min>0.000000</min>
+      <max>255.000000</max>
+      <outputtype>3</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1B60" flags="0x0">
+    <title>Checksum 3</title>
+    <CATEGORYMEM index="0" category="66" />
+    <CATEGORYMEM index="1" category="68" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <LABEL index="0" value="0.00" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedaddress="0x4892A" mmedelementsizebits="32" mmedrowcount="1" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <decimalpl>2</decimalpl>
+      <min>0.000000</min>
+      <max>255.000000</max>
+      <outputtype>3</outputtype>
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
 </XDFFORMAT>
